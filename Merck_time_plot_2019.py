@@ -34,12 +34,12 @@ data = genfromtxt(file_path, converters={0: date_convert, 1: string_convert}, de
 time = data[:,0]
 power = data[:,1]
 
-  
+
 # Subset data to January-February 2019
 # time_jan_feb_2019 = time['15 Jan 2019 00:00:00':'15 Feb 2019 23:59:59']
 
+#test git commit
 
-    
 print("------------------------ Start plot --------------------")
 #plt.plot(time_jan_feb_2019, power)
 plt.plot(time, power)

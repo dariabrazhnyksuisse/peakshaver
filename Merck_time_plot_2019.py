@@ -7,17 +7,17 @@ import dateutil.parser
 
 
 #datafile CSV
-datafile = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Git/Merck/peakshaverr/2020-58-22_Merck_Profile.csv'
+datafile = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Git/Merck/peakshaverr/TEST_FILE.csv'
 print('loading', datafile)
 
 # import data from CSV file
 
-data = np.genfromtxt(datafile, delimiter=';',  dtype=None, converters={0: dateutil.parser.parse})
+data = genfromtxt(datafile, delimiter=',')
 
 
 # select lines to plot
 time = data[:,0]
-power = data[:,1]
+power = data[:,2]
 
 print("prin time")
 print(time)

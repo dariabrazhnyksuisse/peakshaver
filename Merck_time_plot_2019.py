@@ -16,7 +16,7 @@ anyDate = '9 Jun 2019 02:09:00'
 #dateTime convertor
 def date_convert(d_bytes):
     s = d_bytes.decode('utf-8')
-    return np.datetime64(dt.datetime.strptime(s, '%d %b %Y %H:%M:%S'))
+    return np.datetime64(dt.datetime.strptime(s, '%d/%m/%Y %H:%M:%S'))
 
 #strInteger convertor
 def string_convert(s):
@@ -25,14 +25,16 @@ def string_convert(s):
     return int(s)
 
 #file path
-file_path = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Merck/2020-58-22_Merck_Profile.csv'
+file_path = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Git/Merck/peakshaver/2020-58-22_Merck_Profile.csv'
 
 
 # import data from CSV file
-data = genfromtxt(file_path, converters={0: date_convert, 1: string_convert}, delimiter=',')
+data = genfromtxt(file_path, delimiter=',')
 # select lines to plot
 time = data[:,0]
 power = data[:,1]
+
+print(time)
 
 
 # Subset data to January-February 2019

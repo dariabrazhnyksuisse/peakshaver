@@ -1,35 +1,54 @@
 # Import necessary packages
-from matplotlib import pyplot as plt
-import numpy as np
-from numpy import genfromtxt
-from datetime import datetime
+import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 
+# Handle date time conversions between pandas and matplotlib
+from pandas.plotting import register_matplotlib_converters
+register_matplotlib_converters()
 
-dateparse = lambda x: datetime.strptime(x, '%d-%m-%Y %H:%M:%S')
-
-#datafile CSV
-datafile = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Git/Merck/peakshaver/TEST_FILE.csv'
-print('loading', datafile)
-
-# import data from CSV file
-
-df = pd.read_csv(datafile, parse_dates={'datetime': ['date', 'time']}, date_parser=dateparse)
+# Use white grid plot background from seaborn
+sns.set(font_scale=1.5, style="whitegrid")
 
 
-# select lines to plot
-time = df[:,0]
-power = df[:,2]
 
-print("print time")
-print(time)
-print("print power")
-print(power)
+# Define relative path to file
+file_path = ('TEST_FILE.csv')
+
+# Import file into pandas dataframe
+data_2019 = pd.read_csv(file_path)
 
 
-print("------------------------ Start plot --------------------")
-plt.plot(time, power)
-plt.title("GRZ Technologies SA, Stationary Fuel Cell Project Merck \n Approximate Yearly Usage")
-plt.xlabel('01-02/2019')
-plt.ylabel('Power [kW]')
+# Display first rows
+data_2019.head()
+
+# View dataframe info
+data_2019.info()
+
+# View column data types
+data_2019.dtypes
+
+# Check data type of first value in date column
+type(data_2019['date'][0])
+
+# Check data type of second value in time column
+type(data_2019['time'][1])
+
+# Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 10))
+
+
+# Check data type of third value in power column
+type(data_2019['power'][2])
+
+# Add x-axis and y-axis
+ax.plot(data_2019['date'],
+        data_2019['power'],
+        color='DeepSkyBlue')
+
+# Set title and labels for axes
+ax.set(xlabel="Date",
+       ylabel="Power [kW]",
+       title="Merck 2019")
+
 plt.show()

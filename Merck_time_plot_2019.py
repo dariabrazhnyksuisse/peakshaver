@@ -2,26 +2,28 @@
 from matplotlib import pyplot as plt
 import numpy as np
 from numpy import genfromtxt
-import datetime as dt
-import dateutil.parser
+from datetime import datetime
+import pandas as pd
 
+
+dateparse = lambda x: datetime.strptime(x, '%d-%m-%Y %H:%M:%S')
 
 #datafile CSV
-datafile = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Git/Merck/peakshaverr/TEST_FILE.csv'
+datafile = '/Users/lenovo/kDrive/Common documents/IT/13. Profile Assesments/Git/Merck/peakshaver/TEST_FILE.csv'
 print('loading', datafile)
 
 # import data from CSV file
 
-data = genfromtxt(datafile, delimiter=',')
+df = pd.read_csv(datafile, parse_dates={'datetime': ['date', 'time']}, date_parser=dateparse)
 
 
 # select lines to plot
-time = data[:,0]
-power = data[:,2]
+time = df[:,0]
+power = df[:,2]
 
-print("prin time")
+print("print time")
 print(time)
-print("prin power")
+print("print power")
 print(power)
 
 

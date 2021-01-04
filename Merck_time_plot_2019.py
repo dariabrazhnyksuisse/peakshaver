@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+from matplotlib.font_manager import FontProperties
 
 # Handle date time conversions between pandas and matplotlib
 from pandas.plotting import register_matplotlib_converters
@@ -26,7 +27,6 @@ data_2019 = pd.read_csv(file_path,
 # Display the entire value
 print(data_2019.to_string())
 
-
 # Display first rows
 data_2019.head()
 
@@ -46,8 +46,11 @@ print("----------------------------------")
 data_2019.dtypes
 
 
+font = FontProperties()
+font.set_name('Calibri')
+
 # Create figure and plot space
-fig, ax = plt.subplots(figsize=(8, 8))
+fig, ax = plt.subplots(figsize=(10, 10))
 
 
 # Add x-axis and y-axis
@@ -56,10 +59,11 @@ ax.plot(power_jan_feb_2019.index.values,
         color='DeepSkyBlue')
 
 # Set title and labels for axes
-ax.set(xlabel="Date",
-       ylabel="Power [kW]",
-       title="Merck 2019")
+# ax.set_xlabel('time [s]', fontsize='large', fontweight='bold')
 
+ax.set_xlabel("Date", fontproperties=font)
+ax.set_ylabel("Power [kW]", fontproperties=font)
+ax.set_title("Merck Jan-Feb 2019", fontsize='large', fontweight='bold', fontproperties=font)
 
 # Rotate tick marks on x-axis
 plt.setp(ax.get_xticklabels(), rotation=50)
